@@ -15,9 +15,9 @@
     <br />
     <a href="http://agilitylsd.com/">View Website</a>
     ·
-    <a href="https://github.com/cypfisher/lsdx-contracts/issues">Report Bug</a>
+    <a href="https://github.com/0xAppl/agility-contracts/issues">Report Bug</a>
     ·
-    <a href="https://github.com/cypfisher/lsdx-contracts/pulls">Pull Request</a>
+    <a href="https://github.com/0xAppl/agility-contracts/pulls">Pull Request</a>
   </p>
 </div>
 
