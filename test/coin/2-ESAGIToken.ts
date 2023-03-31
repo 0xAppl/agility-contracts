@@ -8,7 +8,6 @@ import { ONE_DAY_IN_SECS, deployStakingPoolContractsFixture, expandTo18Decimals,
 const { provider } = ethers;
 const dayjs = require('dayjs');
 
-
 describe('esAGIToken', () => {
 
   it('AGI convert to esAGI', async () => {
@@ -114,7 +113,6 @@ describe('esAGIToken', () => {
     expect( await esagiToken.connect(Bob).maxRedeemDuration()).to.equal(ONE_DAY_IN_SECS * redeemDurationInDays);
   })
 
-
   it('Mulitple Redeem', async () => {
     const { agiCoin, esagiToken, Alice, Bob, Caro, Dave } = await loadFixture(deployStakingPoolContractsFixture);
     // Bob: 10_000
@@ -139,7 +137,7 @@ describe('esAGIToken', () => {
     console.log(redeemIndex)
     for(var i = 0; i < redeemIndex; i++){ 
       const redeemInfo = (await esagiToken.connect(Bob).getUserRedeem(Bob.address,i))
-      console.log(redeemInfo)
+      // console.log(redeemInfo)
       await time.increase(ONE_DAY_IN_SECS / 2);
       await expect(esagiToken.connect(Bob).finalizeRedeem(i)).to.be.revertedWith("finalizeRedeem: vesting duration has not ended yet");
     }
