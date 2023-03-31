@@ -2,7 +2,6 @@ import { expect } from 'chai'
 import { ethers, upgrades } from 'hardhat';
 import { StakingPoolFactory__factory } from '../typechain/factories/contracts/StakingPoolFactory__factory';
 import { WETH9__factory } from '../typechain/factories/contracts/test/WETH9__factory';
-import { TestERC20__factory } from '../typechain/factories/contracts/test/TestERC20__factory';
 import { StETH__factory } from '../typechain/factories/contracts/test/StETH__factory';
 import { FrxETH__factory } from '../typechain/factories/contracts/test/frxETH.sol/FrxETH__factory';
 import { SfrxETH__factory } from '../typechain/factories/contracts/test/sfrxETH.sol/SfrxETH__factory';
@@ -21,9 +20,6 @@ export async function deployStakingPoolContractsFixture() {
   const AGICoin = await ethers.getContractFactory('AGICoin');
   const AGICoinContract = await AGICoin.deploy();
   const agiCoin = AGICoin__factory.connect(AGICoinContract.address, provider);
-
-  // const agiCoinProxy = await upgrades.deployProxy(AGICoin, []);
-  // const agiCoin = AGICoin__factory.connect(agiCoinProxy.address, provider);
 
   const ESAGIToken = await ethers.getContractFactory('ESAGIToken');
   const ESAGITokenContract = await ESAGIToken.deploy(agiCoin.address);
@@ -49,11 +45,7 @@ export async function deployStakingPoolContractsFixture() {
   const stakingPoolFactoryContract = await StakingPoolFactory.deploy(agiCoin.address, weth.address);
   const stakingPoolFactory = StakingPoolFactory__factory.connect(stakingPoolFactoryContract.address, provider);
 
-  const TestERC20 = await ethers.getContractFactory('TestERC20');
-  const erc20Proxy = await upgrades.deployProxy(TestERC20, ['Test ERC20', 'ERC20']);
-  const erc20 = TestERC20__factory.connect(erc20Proxy.address, provider);
-
-  return { agiCoin, esagiToken, stakingPoolFactory, weth, stETH, frxETH, sfrxETH, erc20, Alice, Bob, Caro, Dave };
+  return { agiCoin, esagiToken, stakingPoolFactory, weth, stETH, frxETH, sfrxETH,  Alice, Bob, Caro, Dave };
 }
 
 export function expandTo18Decimals(n: number) {
