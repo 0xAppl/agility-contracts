@@ -134,7 +134,7 @@ describe('esAGIToken', () => {
     await expect(esagiToken.connect(Bob).redeem(5_000,  ONE_DAY_IN_SECS * redeemDurationIn14Days)).not.to.be.reverted;
     // Bob: cannot finalized redeem since time not reaached
     const redeemIndex = (await esagiToken.connect(Bob).getUserRedeemsLength(Bob.address)).toNumber() 
-    console.log(redeemIndex)
+    // console.log(redeemIndex)
     for(var i = 0; i < redeemIndex; i++){ 
       const redeemInfo = (await esagiToken.connect(Bob).getUserRedeem(Bob.address,i))
       // console.log(redeemInfo)
