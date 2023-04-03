@@ -7,7 +7,6 @@ import { anyValue } from '@nomicfoundation/hardhat-chai-matchers/withArgs';
 import { ONE_DAY_IN_SECS, deployStakingPoolContractsFixture, expandTo18Decimals, expectBigNumberEquals, nativeTokenAddress } from '../utils';
 import { StakingPool__factory } from '../../typechain/factories/contracts/StakingPool__factory';
 
-
 const { provider } = ethers;
 const dayjs = require('dayjs');
 
@@ -198,8 +197,7 @@ describe('Staking Pool', () => {
 
 
     it('Discontinued staking works', async () => {
-
-
+      
       const { agiCoin, esagiToken, stakingPoolFactory, erc20, Alice, Bob, Caro, Dave } = await loadFixture(deployStakingPoolContractsFixture);
 
     // Deploy a staking pool, starting 1 day later, and lasts for 7 days
@@ -279,10 +277,8 @@ describe('Staking Pool', () => {
     it('Deploying StakingPool can only be called by the owner', async () => {
 
       const { stakingPoolFactory, erc20, Bob } = await loadFixture(deployStakingPoolContractsFixture);
-  
       const rewardStartTime = (await time.latest()) + ONE_DAY_IN_SECS;
       const rewardDurationInDays = 7;
-  
       await expect(stakingPoolFactory.connect(Bob).deployPool(erc20.address, rewardStartTime, rewardDurationInDays))
         .to.be.rejectedWith(
           /Ownable: caller is not the owner/,
