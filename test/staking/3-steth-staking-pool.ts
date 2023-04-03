@@ -71,7 +71,7 @@ describe('stETH Staking Pool', () => {
         expect(await stETHStakingPool.totalSupply()).to.equal(bobStakeAmount.add(caroStakeAmount));
         expect(await stETHStakingPool.balanceOf(Caro.address)).to.equal(caroStakeAmount);
 
-        // 1_000_000 $LSD per day. Fast-forward to generate rewards
+        // 1_000_000 $AGI per day. Fast-forward to generate rewards
         await time.increaseTo(rewardStartTime + ONE_DAY_IN_SECS);
         const totalRewardPerDay = totalReward.div(rewardDurationInDays);
         expectBigNumberEquals(totalRewardPerDay.mul(9).div(10), await stETHStakingPool.earned(Bob.address));
@@ -207,7 +207,7 @@ describe('stETH Staking Pool', () => {
     await expect(stETH.connect(Bob).submit({value: expandTo18Decimals(9_000)})).not.to.be.reverted;
     await expect(stETH.connect(Caro).submit({value: expandTo18Decimals(9_000)})).not.to.be.reverted;
 
-    // Fast-forward to reward start time, and deposit 7_000_000 $LSD as reward (1_000_000 per day)
+    // Fast-forward to reward start time, and deposit 7_000_000 $AGI as reward (1_000_000 per day)
     await time.increaseTo(rewardStartTime);
     const totalReward = expandTo18Decimals(7_000_000);
 

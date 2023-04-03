@@ -76,7 +76,7 @@ describe('frxETH Staking Pool', () => {
         expect(await frxETHStakingPool.totalSupply()).to.equal(bobStakeAmount.add(caroStakeAmount));
         expect(await frxETHStakingPool.balanceOf(Caro.address)).to.equal(caroStakeAmount);
 
-        // 1_000_000 $LSD per day. Fast-forward to generate rewards
+        // 1_000_000 $AGI per day. Fast-forward to generate rewards
         await time.increaseTo(rewardStartTime + ONE_DAY_IN_SECS);
         const totalRewardPerDay = totalReward.div(rewardDurationInDays);
         expectBigNumberEquals(totalRewardPerDay.mul(9).div(10), await frxETHStakingPool.earned(Bob.address));
@@ -217,7 +217,7 @@ describe('frxETH Staking Pool', () => {
         .to.emit(frxETH, 'TokenMinterMinted').withArgs(Alice.address, Caro.address, expandTo18Decimals(9_000));
 
 
-    // Fast-forward to reward start time, and deposit 7_000_000 $LSD as reward (1_000_000 per day)
+    // Fast-forward to reward start time, and deposit 7_000_000 $AGI as reward (1_000_000 per day)
     await time.increaseTo(rewardStartTime);
     const totalReward = expandTo18Decimals(7_000_000);
 

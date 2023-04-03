@@ -82,7 +82,7 @@ describe('Eth Staking Pool', () => {
           /Not ready to withdraw EL rewards/,
         );
 
-        // 1_000_000 $LSD per day. Fast-forward to generate rewards
+        // 1_000_000 $AGI per day. Fast-forward to generate rewards
         await time.increaseTo(rewardStartTime + ONE_DAY_IN_SECS);
         const totalRewardPerDay = totalReward.div(rewardDurationInDays);
         expectBigNumberEquals(totalRewardPerDay.mul(9).div(10), await ethStakingPool.earned(Bob.address));
@@ -217,7 +217,7 @@ describe('Eth Staking Pool', () => {
         const ethStakingPool = StakingPool__factory.connect(await stakingPoolFactory.getStakingPoolAddress(nativeTokenAddress), provider);
 
 
-        // Fast-forward to reward start time, and deposit 7_000_000 $LSD as reward (1_000_000 per day)
+        // Fast-forward to reward start time, and deposit 7_000_000 $AGI as reward (1_000_000 per day)
         await time.increaseTo(rewardStartTime);
         const totalReward = expandTo18Decimals(7_000_000);
 

@@ -73,7 +73,7 @@ describe('Staking Pool', () => {
         expect(await erc20StakingPool.totalSupply()).to.equal(bobStakeAmount.add(caroStakeAmount));
         expect(await erc20StakingPool.balanceOf(Caro.address)).to.equal(caroStakeAmount);
 
-        // 1_000_000 $LSD per day. Fast-forward to generate rewards
+        // 1_000_000 $AGI per day. Fast-forward to generate rewards
         await time.increaseTo(rewardStartTime + ONE_DAY_IN_SECS);
         const totalRewardPerDay = totalReward.div(rewardDurationInDays);
         expectBigNumberEquals(totalRewardPerDay.mul(9).div(10), await erc20StakingPool.earned(Bob.address));
@@ -209,7 +209,7 @@ describe('Staking Pool', () => {
     await expect(erc20.connect(Alice).mint(Bob.address, expandTo18Decimals(10_000))).not.to.be.reverted;
     await expect(erc20.connect(Alice).mint(Caro.address, expandTo18Decimals(10_000))).not.to.be.reverted;
 
-    // Fast-forward to reward start time, and deposit 7_000_000 $LSD as reward (1_000_000 per day)
+    // Fast-forward to reward start time, and deposit 7_000_000 $AGI as reward (1_000_000 per day)
     await time.increaseTo(rewardStartTime);
     const totalReward = expandTo18Decimals(7_000_000);
 
