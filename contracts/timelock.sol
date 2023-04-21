@@ -28,9 +28,9 @@ contract TimeLock {
     );
     event Cancel(bytes32 indexed txId);
 
-    uint public constant MIN_DELAY = 10; // seconds
-    uint public constant MAX_DELAY = 1000; // seconds
-    uint public constant GRACE_PERIOD = 1000; // seconds
+    uint public constant MIN_DELAY = 21600; // 6 hr in seconds
+    uint public constant MAX_DELAY = 43200; // 12 hr seconds
+    uint public constant GRACE_PERIOD = 43200; // 12 hr seconds
 
     address public owner;
     // tx id => queued
