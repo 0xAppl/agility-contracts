@@ -8,7 +8,7 @@ import { SfrxETH__factory } from '../typechain/factories/contracts/test/sfrxETH.
 import { AGICoin__factory } from '../typechain/factories/contracts/AGICoin__factory';
 import { ESAGIToken__factory } from '../typechain/factories/contracts/ESAGIToken__factory';
 import { TestERC20__factory } from '../typechain/factories/contracts/test/TestERC20__factory';
-
+import { TimeLock__factory } from '../typechain/factories/contracts/timelock.sol/TimeLock__factory';
 
 const { provider, BigNumber } = ethers;
 
@@ -22,6 +22,10 @@ export async function deployStakingPoolContractsFixture() {
   const AGICoin = await ethers.getContractFactory('AGICoin');
   const AGICoinContract = await AGICoin.deploy();
   const agiCoin = AGICoin__factory.connect(AGICoinContract.address, provider);
+
+  const Timelock = await ethers.getContractFactory('TimeLock');
+  const TimelockContract = await Timelock.deploy();
+  const timelock = TimeLock__factory.connect(TimelockContract.address, provider);
 
   const ESAGIToken = await ethers.getContractFactory('ESAGIToken');
   const ESAGITokenContract = await ESAGIToken.deploy(agiCoin.address);
@@ -51,7 +55,7 @@ export async function deployStakingPoolContractsFixture() {
   const erc20Proxy = await upgrades.deployProxy(TestERC20, ['Test ERC20', 'ERC20']);
   const erc20 = TestERC20__factory.connect(erc20Proxy.address, provider);
 
-  return { agiCoin, esagiToken, stakingPoolFactory, erc20, weth, stETH, frxETH, sfrxETH,  Alice, Bob, Caro, Dave };
+  return { agiCoin, timelock, esagiToken, stakingPoolFactory, erc20, weth, stETH, frxETH, sfrxETH,  Alice, Bob, Caro, Dave };
 }
 
 export function expandTo18Decimals(n: number) {
