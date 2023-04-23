@@ -2,7 +2,6 @@
 
 pragma solidity >=0.6.11;
 
-
 import "./lib/communal/Math.sol";
 import "./lib/communal/SafeMath.sol";
 import "./lib/communal/SafeERC20.sol";
@@ -10,7 +9,7 @@ import "./lib/communal/TransferHelper.sol";
 import "./lib/communal/ReentrancyGuard.sol";
 import "./lib/communal/Owned.sol";
 
-contract USHFarm is Owned, ReentrancyGuard {
+contract AGILITYFarm is Owned, ReentrancyGuard {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
